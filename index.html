@@ -3,165 +3,406 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-
+    <title>PharmAlarms - Medication Reminder on your phone</title>
+<!--
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="queries.css">
+    <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
 </head>
 <body>
 
 
+<!--<header class="header nav-open">-->
+<header class="header">
+    <!--    <img src="" alt="">-->
+    <!--    <span class="logo">Logo</span>-->
+    <a href="#" class="header-logo logo">PharmAlarms</a>
+    <nav class="main-nav">
+        <ul class="main-nav-list">
+            <li><a class="main-nav-link" href="#iphone">Iphone</a></li>
+            <li><a class="main-nav-link" href="#android">Android</a></li>
+            <li><a class="main-nav-link nav-cta" href="about.html">About</a></li>
+        </ul>
+    </nav>
 
+    <button class="btn-mobile-nav">
+        <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+        <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
+    </button>
+</header>
 
+<div class="section-cta">
+    <div class="hero-container cta">
+        <div class="cta-text-box">
+            <h1 class="heading-one">Medication Reminder <br> on your Phone:</h1>
+            <h4 class="heading-four">Generate a QR code for the little pills you always forget to take on time!</h4>
+            <br/>
+            <form class="cta-form" id="dateForm">
+                <div>
+                    <label id="basic-addon1" class="title">Medication name:</label>
+                    <input type="text" class="input" placeholder="Tylenol" id="eventTitle" aria-describedby="eventTitle" required>
+                </div>
 
-    <div class="container-fluid">
+                <div>
+                    <label id="basic-addon2" class="title">Medication notes:</label>
+                    <input type="text" class="input" id="eventDesc" placeholder="Orange pill, take 2 with water after meal" aria-describedby="eventDesc">
+                </div>
 
+                <div class="checkboxes" id="daysOfWeek">
+                    <label for="daysOfWeek" class="title">Days of Week:</label>
 
-        <div class = "row justify-content-md-center">
+                    <div class="days">
+                        <div>
+                            <input type="checkbox" value="MO" id="monday">
+                            <label for="monday"> Monday </label>
+                        </div>
 
+                        <div>
+                            <input type="checkbox" value="TU" id="tuesday">
+                            <label for="tuesday"> Tuesday </label>
+                        </div>
 
-            <div class = "col-md-8">  
+                        <div>
+                            <input type="checkbox" value="WE" id="wednesday">
+                            <label for="wednesday"> Wednesday </label>
+                        </div>
 
-                <h1 class = "text-center display-4" style="font-size:3.5vw;">Medication Reminder on your Phone:</h1>
-                <h4 class = "text-center display-4" style="font-size:1.5vw;">Generate a QR code for the little pills you always forget to take on time!</h4>
+                        <div>
+                            <input type="checkbox" value="TH" id="thursday">
+                            <label for="thursday"> Thursday </label>
+                        </div>
 
-                <br/>
+                        <div>
+                            <input type="checkbox" value="FR" id="friday">
+                            <label for="friday"> Friday </label>
+                        </div>
 
-                <form id="dateForm">
+                        <div>
+                            <input type="checkbox" value="SA" id="saturday">
+                            <label for="saturday"> Saturday </label>
+                        </div>
 
-                    <div class="input-group mb-3">
-
-                        <span class="input-group-text" id="basic-addon1">Medication name</span>
-                    
-                        <input type="text" class="form-control" id="eventTitle" aria-describedby="eventTitle" style="margin-right: 10px;" required>
-                    
+                        <div>
+                            <input type="checkbox" value="SU" id="sunday">
+                            <label for="sunday"> Sunday </label>
+                        </div>
                     </div>
 
-                    <div class="input-group mb-3">
+                    <span id="dayWarning" style='visibility: hidden;' class="badge bg-danger">Required</span>
+                </div>
 
-                        <span class="input-group-text" id="basic-addon1">Medication notes</span>
-                    
-                        <input type="text" class="form-control" id="eventDesc" aria-describedby="eventDesc">
-                    
-                    
-                    </div>
-                    
+                <div class="reminder">
+                    <label id="basic-addon3" class="title">Reminder Duration:  <span id="durDisplay"></span></label>
 
+                    <input type="range" min="1" max="8" id="duration">
 
-                    <div id="daysOfWeek" class="mb-3 input-group">
+                </div>
 
-                        <label for="daysOfWeek" class="form-label input-group-text" style="margin-right: 10px;" >Days of Week</label>
+                <div class="time">
+                    <label id="basic-addon4" class="title">Time:</label>
+                    <input type="time" class="input" id="time" placeholder="XX:XX AM/PM" aria-describedby="basic-addon4" name="time"  required>
+                </div>
 
-                        <div class="form-check form-check-inline">
+                <button class="btn btn--form" type="submit" id="submitCal">Submit</button>
 
-                            <input class="form-check-input" type="checkbox" value="MO" id="monday">
-                            
-                            <label class="form-check-label" for="monday"> Monday </label>
-                        
-                        </div>
-
-
-                        <div class="form-check form-check-inline">
-
-                            <input class="form-check-input" type="checkbox" value="TU" id="tuesday">
-                            
-                            <label class="form-check-label" for="tuesday"> Tuesday </label>
-
-                        </div>
-
-
-                        <div class="form-check form-check-inline">
-
-                            <input class="form-check-input" type="checkbox" value="WE" id="wednesday">
-                            
-                            <label class="form-check-label" for="wednesday"> Wednesday </label>
-
-                        </div>
-
-
-                        <div class="form-check form-check-inline">
-
-                            <input class="form-check-input" type="checkbox" value="TH" id="thursday">
-                            
-                            <label class="form-check-label" for="thursday"> Thursday </label>
-
-                        </div>
-
-
-                        <div class="form-check form-check-inline">
-
-                            <input class="form-check-input" type="checkbox" value="FR" id="friday">
-                            
-                            <label class="form-check-label" for="friday"> Friday </label>
-
-                        </div>
-
-
-                        <div class="form-check form-check-inline">
-
-                            <input class="form-check-input" type="checkbox" value="SA" id="saturday">
-                            
-                            <label class="form-check-label" for="saturday"> Saturday </label>
-
-                        </div>
-
-
-                        <div class="form-check form-check-inline">
-
-                            <input class="form-check-input" type="checkbox" value="SU" id="sunday">
-                            
-                            <label class="form-check-label" for="sunday"> Sunday </label>
-                        
-                        </div>
-
-                        <span id="dayWarning" style='visibility: hidden;' class="badge bg-danger">Required</span>
-
-                    </div>
-
-
-                    <div class="mb-3 input-group">
-
-                        <span class="input-group-text" id="basic-addon1" style="margin-right: 10px;">Reminder Duration</span>
-                        
-                        <input type="range" class="form-range form-check-inline" min="1" max="8" id="duration">
-
-                        <div class = "col-auto" id="durDisplay"></div>
-
-                    </div>
-
-
-                    <div class="input-group mb-3">
-                        
-                        <span class="input-group-text" id="basic-addon1">Time</span> 
-
-                        <input type="time" id="time" placeholder="XX:XX AM/PM" aria-describedby="basic-addon1" style="margin-right: 10px;" name="time"  required>
-                      
-                    </div>
-
-
-                    
-
-                    <button type="submit" id="submitCal" class="btn btn-primary">Submit</button>
-                  
-                </form>
-
-            </div>
-        
-        </div>
-
-        <hr/>
-
-        <div class="row">
-
-            <div class="col-md-8" style="margin-left: auto;margin-right: auto;" id = "qrSpot">
-
-            </div>
+            </form>
 
         </div>
-
-        <hr/>
+        <div class="cta-img-box"
+             role="img"
+             aria-label="orange-pill-bottle-on-blue-background">
+        </div>
 
     </div>
+
+    <!--    <hr/>-->
+
+    <div class="container qr">
+
+        <div id = "qrSpot">
+
+        </div>
+
+    </div>
+
+    <!--    <hr/>-->
+
+</div>
+
+
+<section class="section-how iphone" id="iphone">
+    <div class="container">
+        <span class="subheading">How it works</span>
+        <h2 class="heading-two">
+            Instruction for iPhone Users
+        </h2>
+    </div>
+    <div class="container grid-align-center grid grid--2-cols">
+        <!--STEP 01-->
+        <div class="step-text-box">
+            <p class="step-number">01</p>
+            <h3 class="heading-three">
+                QR Code
+            </h3>
+            <p class="step-description">
+                Scan the QR code with the camera.
+                The option to add calendar event will appear from the top.
+                Click on the dropdown option.
+            </p>
+        </div>
+        <div class="step-image-box">
+            <img src="https://i.imgur.com/0WsEkeJ.jpeg" class="step-img" alt="Step 1">
+        </div>
+
+        <!--STEP 02-->
+        <div class="step-image-box">
+            <img src="https://i.imgur.com/3KM02dE.png" class="step-img" alt="Step 2">
+        </div>
+        <div class="step-text-box">
+            <p class="step-number">02</p>
+            <h3 class="heading-three">
+                Calendar App.
+            </h3>
+            <p class="step-description">
+                Your device will take you to the calendar app.
+                To set the alarm, click on the 'alert' setting.
+            </p>
+        </div>
+
+        <!--STEP 03-->
+        <div class="step-text-box">
+            <p class="step-number">03</p>
+            <h3 class="heading-three">
+                Alert
+            </h3>
+            <p class="step-description">
+                Click on 'At time of event'. The option to add calendar event will appear from the top. Click on the dropdown option.
+            </p>
+        </div>
+        <div class="step-image-box">
+            <img src="https://i.imgur.com/m1mtXee.png" class="step-img" alt="Step 3">
+        </div>
+
+
+        <!--STEP 04-->
+        <div class="step-image-box">
+            <img src="https://i.imgur.com/eyHTZBO.png" class="step-img" alt="Step 4">
+        </div>
+        <div class="step-text-box">
+            <p class="step-number">04</p>
+            <h3 class="heading-three">
+                Reminder
+            </h3>
+            <p class="step-description">
+                If you generated your reminder for duration longer than 1 week,  an option will appear: <span class="strong">'This is a
+                repeating event'</span>
+                <br> Select
+                <span class="strong">'save for future events'</span> to have the reminder repeat.
+            </p>
+        </div>
+    </div>
+
+
+</section>
+
+<section class="section-how android" id="android">
+    <div class="container">
+        <span class="subheading">How it works</span>
+        <h2 class="heading-two">
+            Instruction for Android Users
+        </h2>
+    </div>
+    <div class="container grid-align-center grid grid--2-cols">
+        <!--STEP 01-->
+        <div class="step-text-box">
+            <p class="step-number">01</p>
+            <h3 class="heading-three">
+                Google Lens
+            </h3>
+            <p class="step-description">
+                Open the Google Lens app. If you do not have Google Lens app, it can be installed
+                <a class="link" href="https://play.google.com/store/apps/details?id=com.google.ar.lens&hl=en_US&gl=US" target="_blank">here</a>
+            </p>
+        </div>
+        <div class="step-image-box">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Google_Lens_-_new_logo.png" class="step-img" alt="Step 1">
+        </div>
+
+        <!--STEP 02-->
+        <div class="step-image-box">
+            <img src="https://i.imgur.com/IIV2G6w.png" class="step-img" alt="Step 2">
+        </div>
+        <div class="step-text-box">
+            <p class="step-number">02</p>
+            <h3 class="heading-three">
+                QR Code
+            </h3>
+            <p class="step-description">
+                Align the qr code with the target box on screen. Use the white magnifier button to snap the photo
+            </p>
+        </div>
+
+        <!--STEP 03-->
+        <div class="step-text-box">
+            <p class="step-number">03</p>
+            <h3 class="heading-three">
+                Calendar Event
+            </h3>
+            <p class="step-description">
+                The option to create calendar event will appear. Click 'create calendar event'
+            </p>
+        </div>
+        <div class="step-image-box">
+            <img src="https://i.imgur.com/Ui0KJm7.png" class="step-img" alt="Step 3">
+        </div>
+
+
+        <!--STEP 04-->
+        <div class="step-image-box">
+            <img src="https://i.imgur.com/JFmsVev.png" class="step-img" alt="Step 4">
+        </div>
+        <div class="step-text-box">
+            <p class="step-number">04</p>
+            <h3 class="heading-three">
+                Reminder
+            </h3>
+            <p class="step-description">
+                Click 'save' on top right corner to save the reminder to your google calendar.
+            </p>
+        </div>
+    </div>
+
+
+</section>
+
+
+<footer class="footer">
+    <div class="container grid grid--footer">
+        <div class="logo-col">
+            <a href="#" class="footer-logo">PharmAlarms</a>
+            <p class="copyright">
+                Copyright &copy; <span class="year">2027</span> by PharmAlarms. All rights reserved.
+            </p>
+        </div>
+        <div class="address-col">
+            <p class="footer-heading">Contact Us</p>
+            <address class="contacts">
+                <p class="address">123 Somewhere st. 1st Floor, City, State, 12345</p>
+                <p>
+                    <a class="footer-link" href="tel:123-345-0000">123-345-0000</a> <br>
+                    <a class="footer-link" href="mailto: email@email.com">email@email.com</a>
+                </p>
+            </address>
+        </div>
+
+        <nav class="nav-col">
+            <p class="footer-heading">Account</p>
+            <ul class="footer-nav">
+                <li><a class="footer-link" href="#">iOS App</a></li>
+                <li><a class="footer-link" href="#">Android App</a></li>
+            </ul>
+        </nav>
+        <nav class="nav-col">
+            <p class="footer-heading">Company</p>
+            <ul class="footer-nav">
+                <!--                <li><a class="footer-link" href="#">About</a></li>-->
+                <li><a class="footer-link" href="about.html">About</a></li>
+            </ul>
+        </nav>
+        <nav class="nav-col">
+            <p class="footer-heading">Resources</p>
+            <ul class="footer-nav">
+                <li><a class="footer-link" href="#">Privacy Policy</a></li>
+                <!--                <li><a class="footer-link" href="#">Help Center</a></li>-->
+            </ul>
+        </nav>
+
+
+    </div>
+
+</footer>
+
+<script>
+    //Set current year
+    const yearEl = document.querySelector('.year');
+    const currentYear = new Date().getFullYear();
+    console.log(currentYear);
+    // yearEl.textContent = 3000;
+    yearEl.textContent = currentYear;
+
+    //Make mobile navigation work
+    const btnNavEl = document.querySelector('.btn-mobile-nav');
+    const headerEl = document.querySelector('.header');
+
+    btnNavEl.addEventListener('click', function () {
+        headerEl.classList.toggle('nav-open');
+    })
+
+    //Smooth Scrolling animation
+    const allLinks = document.querySelectorAll('a:link');
+    // console.log(allLinks);
+
+    allLinks.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+            // console.log(e);
+            // e.preventDefault();
+            const href = link.getAttribute('href');
+            // console.log(href);
+
+            //Scroll back to top
+            if (href === "#") window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+
+            // if (href !== "#" && href.startsWith('#')) console.log(href);
+            //Scroll to other links
+            // if (href !== "#" && href.startsWith('#')) {
+            if (href !== "#" && href.startsWith('#')) {
+                const sectionEL = document.querySelector(href);
+                // console.log(sectionEL);
+                sectionEL.scrollIntoView({behavior: "smooth"});
+            }
+
+            //Close mobile navigation
+            if(link.classList.contains('main-nav-link')) {
+                headerEl.classList.toggle('nav-open');
+            }
+        });
+    });
+
+    //Sticky Navigation
+    const sectionCtaEl = document.querySelector('.section-cta');
+
+    const obs = new IntersectionObserver(function (entries){
+            const ent = entries[0];
+            // console.log(ent);
+            if (ent.isIntersecting === false) {
+                // document.querySelector('.header').classList.add('sticky');
+                document.body.classList.add('sticky');
+            }
+            if (ent.isIntersecting === true) {
+                document.body.classList.remove('sticky');
+            }
+        },
+        {
+            root: null,
+            threshold: 0,
+            rootMargin: "-80px",
+
+        });
+    obs.observe(sectionCtaEl);
+
+
+
+
+</script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -371,56 +612,12 @@
 
 
 </script>
-<p style="margin-left:30px;font-size:30px">
-    <b>Instruction for iPhone Users</b>
-</p>
-<p style="margin-left:30px;">
-    <br>
-    <br>
-    <img src="https://i.imgur.com/0WsEkeJ.jpeg" alt="Step 1" style="width:300px;height:550px;">
-    <br>
-    <b>Step 1:</b> scan the QR code with the camera. <br>The option to add calendar event will appear from the top.<br>
-    Click on the dropdown option. 
-    <br>
-    <br>
-    <img src="https://i.imgur.com/3KM02dE.png" alt="Step 2" style="width:300px;height:550px;">
-    <br>
-    <b>Step 2:</b> Your device will take you to the calendar app. <br>To set the alarm, click on the 'alert' setting.  
-    <br>
-    <br>
-    <img src="https://i.imgur.com/m1mtXee.png" alt="Step 3" style="width:300px;height:550px;">
-    <br>
-    <b>Step 3:</b> Click on 'At time of event'
-    <br>
-    <br>
-    <img src="https://i.imgur.com/eyHTZBO.png" alt="Step 4" style="width:300px;height:550px;">
-    <br>
-    <b>Step 4:</b> If you generated your reminder for duration longer than 1 week, <br> an option will appear: 'This is a repeating event' <br> select 'save for future events' to have the reminder repeat. 
-</p>
-
-<p style="margin-left:30px;font-size:30px">
-    <b>Instruction for Android Users</b>
-    <br>
-</p>
-<p style="margin-left:30px;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Google_Lens_-_new_logo.png" alt="Step 2" style="width:300px;height:300px;">
-    <br>
-    <b>Step 1:</b> Open the Google Lens app. <br>If you do not have Google Lens app, it can be installed <a href="https://play.google.com/store/apps/details?id=com.google.ar.lens&hl=en_US&gl=US" target="_blank">here</a>
-    <br>
-    <br>
-    <img src="https://i.imgur.com/IIV2G6w.png" alt="Step 1" style="width:300px;height:550px;">
-    <br>
-    <b>Step 2:</b> Align the qr code with the target box on screen. <br> Use the white magnifier button to snap the photo
-    <br>
-    <br>
-    <img src="https://i.imgur.com/Ui0KJm7.png" alt="Step 1" style="width:300px;height:550px;">
-    <br>
-    <b>Step 3:</b> The option to create calendar event will appear. Click 'create calendar event'
-    <br>
-    <br>
-    <img src="https://i.imgur.com/JFmsVev.png" alt="Step 1" style="width:300px;height:550px;">
-    <br>
-    <b>Step 4:</b> Click 'save' on top right corner to save the reminder to your google calendar. 
 
 
-</p>
+</body>
+</html>
+
+
+
+
+
