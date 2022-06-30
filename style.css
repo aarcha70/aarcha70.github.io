@@ -367,6 +367,23 @@ TEAM SECTION
     background-position: center;
 }
 
+.team-img-box3 {
+    background-image: url("Sagar.jpeg");
+    background-size: cover;
+    background-position: center;
+}
+
+.team-img-box4 {
+    background-image: url("Kevin.jpeg");
+    background-size: cover;
+    background-position: center;
+}
+
+.team-img-box5 {
+    background-image: url("Shubham.jpeg");
+    background-size: cover;
+    background-position: center;
+}
 
 /*
 CTA SECTION
