@@ -361,7 +361,11 @@ TEAM SECTION
     background-position: center;
 }
 
-
+.team-img-box2 {
+    background-image: url("EWH.jpeg");
+    background-size: cover;
+    background-position: center;
+}
 
 
 /*
